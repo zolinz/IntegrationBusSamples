@@ -1,0 +1,49 @@
+
+
+
+
+CREATE COMPUTE MODULE GetAccounts_BuildResponse
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		--CALL CopyEntireMessage();
+
+		 
+
+		Declare aggrBody reference to InputRoot.ComIbmAggregateReplyBody;		
+
+		DECLARE A INTEGER 1;
+		DECLARE B INTEGER CARDINALITY(aggrBody.*[]);
+		
+		set OutputRoot.XMLNSC.MyAccounts.[1] = aggrBody.Accounts[1].XMLNSC.Accounts.[1];
+		set OutputRoot.XMLNSC.MyAccounts.[2] = aggrBody.Accounts[1].XMLNSC.Accounts.[2];
+		set OutputRoot.XMLNSC.MyAccounts.[3] = aggrBody.Accounts[1].XMLNSC.Accounts.[3];
+		
+		set OutputRoot.XMLNSC.MyAccounts.[4] = aggrBody.Accounts[2].XMLNSC.Accounts.[1];
+		set OutputRoot.XMLNSC.MyAccounts.[5] = aggrBody.Accounts[2].XMLNSC.Accounts.[2];
+		set OutputRoot.XMLNSC.MyAccounts.[6] = aggrBody.Accounts[2].XMLNSC.Accounts.[3];
+		
+		
+		set OutputRoot.XMLNSC.MyAccounts.[7] = aggrBody.Accounts[3].XMLNSC.Accounts.[1];
+		set OutputRoot.XMLNSC.MyAccounts.[8] = aggrBody.Accounts[3].XMLNSC.Accounts.[2];
+		set OutputRoot.XMLNSC.MyAccounts.[9] = aggrBody.Accounts[3].XMLNSC.Accounts.[3];
+		
+
+		
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;
