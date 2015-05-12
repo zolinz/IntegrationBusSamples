@@ -21,7 +21,7 @@
         <translation xmi:type="utility:ConstantString" string="Acc2"/>
       </nodes>
       <nodes xmi:type="ComIbmLabel.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="392,241" labelName="Acc3">
-        <translation xmi:type="utility:ConstantString" string="Label"/>
+        <translation xmi:type="utility:ConstantString" string="Acc_3"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="101,20" computeExpression="esql://routine/#GetAccountsData_Compute.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="Compute"/>
